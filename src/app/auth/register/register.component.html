@@ -1,0 +1,56 @@
+<div   fxFlexFill fxLayoutAlign="center center">
+  <mat-card fxFlex="60" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <mat-toolbar color="primary">
+      <mat-card-title>Enregistrement d'une personne</mat-card-title>
+    </mat-toolbar>
+
+    <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-card-content fxLayout="row row-wrap" fxLayoutGap="10px" fxLayoutAlign="space-around center">
+        <mat-form-field fxFlex="45">
+          <input matInput formControlName="nom" placeholder="Nom">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="45">
+          <input matInput formControlName="prenom" placeholder="Prénom">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="90">
+          <input matInput formControlName="pseudo" placeholder="Pseudo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+          <input matInput formControlName="email" placeholder="@ mail">
+        </mat-form-field>
+
+        <div formGroupName="pwd" fxFlex="100" fxLayoutGap="10px" fxLayoutAlign="space-around center">
+          <mat-form-field fxFlex="45">
+            <input matInput type="password" placeholder="Password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+          </mat-form-field>
+        </div>
+        <div *ngIf="(password.invalid || password.value != confirmPassword.value) && (confirmPassword.touched)"
+             class="mat-error" fxFlex="100">
+          <div fxFlex="100"  *ngIf="password.invalid; else nomatch">
+            Le mot de passe doit contenir au moins 4 caractères.
+          </div>
+          <ng-template #nomatch >
+            Les mots de passe saisis ne correspondent pas.
+          </ng-template>
+        </div>
+
+      </mat-card-content>
+
+      <button [disabled]="!registerForm.valid" mat-stroked-button color="accent" class="btn-block">Valider</button>
+    </form>
+    <mat-card *ngIf="error" class="mat-error">
+      <mat-card-header>
+      {{error.error || error}}</mat-card-header>
+      <mat-card-content *ngIf="error.body">
+        {{error.body|json}}
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+</div>

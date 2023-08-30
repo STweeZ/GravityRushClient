@@ -1,0 +1,18 @@
+<section fxFlexFill fxLayoutGap="20px"  fxLayout="column"  class="taches" >
+  <mat-toolbar color="accent" fxLayout="row" fxLayoutAlign="space-around center">
+    <div>
+      Classements
+    </div>
+    <span class="mav-tool-items">
+      <button mat-icon-button routerLink="./list">
+        <mat-icon>list</mat-icon>
+        Liste
+      </button>
+      <button mat-icon-button routerLink=".">
+        <mat-icon>home</mat-icon>
+        Dashboard
+      </button>
+    </span>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</section>

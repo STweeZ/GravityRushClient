@@ -1,0 +1,11 @@
+.home-card {
+  max-width: 800px;
+}
+.header-image {
+  background-image: url('../../assets/gravityRush/GravityRushLogo.png');
+  background-size: cover;
+}
+
+.centerThis {
+  text-align: center;
+}

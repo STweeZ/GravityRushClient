@@ -1,0 +1,14 @@
+:host {
+  padding-top: 20px;
+}
+
+.img-avatar {
+  max-height: 500px;
+  width: auto;
+}
+
+.upperDiv {
+  color: white;
+  background: #ff4081;
+  text-align: center;
+}

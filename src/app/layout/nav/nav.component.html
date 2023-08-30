@@ -1,0 +1,25 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between">
+  <a mat-button routerLink="/"><h1>GravityRush</h1></a>
+  <div><a routerLink="/"></a></div>
+  <span class="nav-tool-items">
+    <div *ngIf="currentUser; else noconnected">
+      <a mat-button routerLink="/"><mat-icon>home</mat-icon> Accueil</a>
+      <a mat-button routerLink="/gravityRush"> GravityRush</a>
+      <a mat-button routerLink="/taches"> Classements</a>
+      <a mat-button routerLink="/personnes">Joueurs</a>
+      <button mat-icon-button [mat-menu-trigger-for]="menu">
+        <mat-icon>account_circle</mat-icon>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu x-position="before" #menu="matMenu">
+        <button mat-menu-item
+                [routerLink]="['/profil', currentUser.id]"> {{currentUser.prenom}} {{currentUser.nom}}</button>
+        <button mat-menu-item routerLink="/login" (click)="logout()"> Deconnexion</button>
+      </mat-menu>
+    </div>
+    <ng-template #noconnected>
+    <a mat-button routerLink="/login"> Connexion</a>
+    <a mat-button routerLink="/register"> Enregistrement</a>
+    </ng-template>
+  </span>
+</mat-toolbar>

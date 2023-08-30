@@ -1,0 +1,71 @@
+<div fxFlexFill fxLayoutAlign="center center" *ngIf="loading">
+  <mat-card>
+    <mat-card-content>
+      <mat-progress-spinner
+        class="example-margin"
+        [color]="'primary'"
+        mode="indeterminate"
+        diameter="100">
+      </mat-progress-spinner>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="!loading">
+  <mat-card style="background: #ff4081">
+    <div class="upperDiv">Il y a {{lesTaches.length}} enregistrement(s) sur le site.</div>
+  </mat-card>
+</div>
+
+<div *ngIf="!loading && lesTaches.length != 0">
+  <div *ngFor="let jeu of lesJeux">
+    <div>
+      <mat-card style="background: #ff4081; margin: 2rem;">
+        <div class="upperDiv">{{jeu[0].jeu}}<br><br>Il y a {{jeu.length}} joueur(s) classé(s) sur ce niveau.</div>
+      </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="jeu.length != 0 && sortedTaches(jeu)">
+      <table mat-table [dataSource]="jeu" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> Position</th>
+          <td mat-cell *matCellDef="let i = index">{{i + 1}}</td>
+        </ng-container>
+
+        <!-- Pseudo Column -->
+        <ng-container matColumnDef="player">
+          <th mat-header-cell *matHeaderCellDef> Joueur</th>
+          <td mat-cell *matCellDef="let element"> {{element.player}} </td>
+        </ng-container>
+
+        <!-- Score Column -->
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef> Score</th>
+          <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description</th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date</th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedRow(row)"
+            [ngClass]="{hovered: row.hovered, highlighted: isSelected(row)}" (mouseover)="row.hovered = true"
+            (mouseout)="row.hovered = false"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

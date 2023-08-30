@@ -1,0 +1,15 @@
+<div fxFlexFill fxLayoutAlign="center center" *ngIf="loading">
+  <mat-card>
+    <mat-card-content>
+      <mat-progress-spinner
+        class="example-margin"
+        [color]="'primary'"
+        mode="indeterminate"
+        diameter="100">
+      </mat-progress-spinner>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<app-form-personne [personne]="personne" (updatedPersonne)="update($event)" *ngIf="!loading"></app-form-personne>

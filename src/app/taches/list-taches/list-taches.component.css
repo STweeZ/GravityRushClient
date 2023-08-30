@@ -1,0 +1,26 @@
+table {
+  width: 80%;
+}
+
+
+.mat-row.hovered {
+  background: #ff4081;
+}
+
+.mat-row.highlighted {
+  background: #999;
+}
+
+/*
+  This is a work around for checkbox bug in material row
+  https://github.com/angular/material2/issues/8600
+*/
+mat-cell.mat-cell, mat-header-cell.mat-header-cell {
+  overflow: visible;
+}
+
+.upperDiv {
+  color: white;
+  background: #ff4081;
+  text-align: center;
+}

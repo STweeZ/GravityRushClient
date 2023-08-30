@@ -1,0 +1,14 @@
+<div class="App">
+  <ng-container *ngIf="!initialize">
+    <img src="../assets/gravityRush/level1/Menu.png"/>
+    <div (click)="initializeGame('firstLevel')" class="flex">
+      <a href="javascript:void(0)" class="bttn">Niveau I</a>
+    </div>
+    <div (click)="initializeGame('secondLevel')" class="flex">
+      <a href="javascript:void(0)" class="bttn">Niveau II</a>
+    </div>
+  </ng-container>
+  <div class="games">
+    <ion-phaser [game]="game" [initialize]="initialize"></ion-phaser>
+  </div>
+</div>
